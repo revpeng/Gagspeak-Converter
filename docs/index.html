@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<head>
+<title>Gagspeak Converter</title>
+<style>
+body {
+  color: #eeeeee;
+  background: #181a1b;
+  font: 100% system-ui;
+}
+a {
+  color: #809fff;
+}
+textarea {
+  color: #ffffff;
+  background-color: #0b0f10;
+  font: 100% system-ui;
+}
+</style>
+<script>
+var dict = [['a','n','r','a'],['b','h','h','h'],['d','n','n','n'],['e','m','m','e'],['f','f','h','h'],['g','g','g','h'],['i','n','n','i'],['j','n','h','gh'],['k','h','ch','ch'],['l','m','r','u'],['m','m','m','nh'],['o','n','r','o'],['p','p','h','ch'],['q','g','c','ch'],['r','r','r','u'],['s','ph','h','h'],['t','ph','h','gh'],['u','n','r','u'],['v','f','h','gh'],['w','mm','m','uu'],['x','gh','ch','ch'],['y','m','m','y'],['z','ph','h','gh'],['A','N','R','A'],['B','H','H','H'],['D','N','N','N'],['E','M','M','E'],['F','F','H','H'],['G','G','G','H'],['I','N','N','I'],['J','N','H','GH'],['K','H','CH','CH'],['L','M','R','U'],['M','M','M','NH'],['O','N','R','O'],['P','P','H','CH'],['Q','G','C','CH'],['R','R','R','U'],['S','PH','H','H'],['T','PH','H','GH'],['U','N','R','U'],['V','F','H','GH'],['W','MM','M','UU'],['X','GH','CH','CH'],['Y','M','M','Y'],['Z','PH','H','GH']];
+
+/* Copying to clipboard */
+function copyText() {
+  /* Get the text field */
+  var copyText = document.getElementById("outputText");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+}
+
+function getReplacement(x,option){
+	var output = x;
+	for(let row of dict){
+		if(row[0] == x){
+			output = row[option];
+		}
+	}
+	return output;
+}
+
+function textReplace() {
+	let inputText = document.getElementById("inputText").value;
+	let option = document.querySelector('input[type = radio]:checked').value;
+	let outputText = "";
+	
+	for (let letter of inputText){
+		outputText = outputText + getReplacement(letter,option)
+	}
+	
+	document.getElementById("outputText").value = outputText;
+}
+</script>
+</head>
+<body>
+<h1>Gagspeak Converter</h1>
+<p>Input Text</p>
+<textarea rows="4" cols="50" id="inputText"
+	oninput="textReplace()"
+	placeholder="Type input text here.">
+</textarea>
+<p>Gag type:
+<input type="radio" onclick="textReplace()" name="options" value=1 checked>Filling
+<input type="radio" onclick="textReplace()" name="options" value=2>Covering
+<input type="radio" onclick="textReplace()" name="options" value=3>Ring</p>
+<textarea rows="4" cols="50" id="outputText" readonly>
+</textarea>
+<br/>
+<input type="button" id="copy" onclick="copyText()" value="Copy to Clipboard">
+<small>
+<p>Tested and worked in most current version (per 2021/08/03) of Chrome, Edge, and Firefox.</p>
+<p>Original SWF by <a href="https://www.deviantart.com/veroom/art/Gagspeak-Converter-739520813">Veroom (DeviantArt)</a></p>
+<p>Ported to JS by <a href="https://www.deviantart.com/revpeng/">Revie (DeviantArt)</a></p>
+</small>
+</body>
+</html>
