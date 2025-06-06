@@ -7,6 +7,8 @@ A little background, so this is a little tool to convert words into gagspeak. Th
 
 Just download "gagspeak.html" and it can be opened on any browser. It works with three types of gag (filling, covering and ring), has a button to copy the converted text to your clipboard.
 
+![image](https://github.com/user-attachments/assets/bc81b8e3-aef6-4f83-940f-fbb07e7b0d0a)
+
 It was tested and worked in most current version browser of Chrome, Edge and Mozilla.
 
 ## A Bit Disclaimer
